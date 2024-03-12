@@ -11,6 +11,8 @@
 # Create a stage for resolving and downloading dependencies.
 FROM eclipse-temurin:17-jdk-jammy as deps
 
+ARG CI_PROJECT_DIR
+
 WORKDIR /build
 
 # Copy the mvnw wrapper with executable permissions.
@@ -20,7 +22,7 @@ COPY .mvn/ .mvn/
 # Download dependencies as a separate step to take advantage of Docker's caching.
 # Leverage a cache mount to /root/.m2 so that subsequent builds don't have to
 # re-download packages.
-RUN --mount=type=bind,source=pom.xml,target=/build/pom.xml \
+RUN --mount=type=bind,source=$CI_PROJECT_DIR/pom.xml,target=pom.xml \
     --mount=type=cache,target=/root/.m2 ./mvnw dependency:go-offline -DskipTests
 
 ################################################################################
