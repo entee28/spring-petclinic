@@ -15,7 +15,7 @@ pipeline {
             }
 
             steps {
-                sh 'docker login --username $ACR_CREDS_USR --password $ACR_CRED'
+                sh 'docker login --username $ACR_CREDS_USR --password $ACR_CREDS_PSW'
                 sh 'docker build -t thachthucregistry.azurecr.io/minimal-java:latest .'
                 sh 'docker push thachthucregistry.azurecr.io/minimal-java:latest'
             }
