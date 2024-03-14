@@ -6,8 +6,6 @@ spec:
   containers:
     - name: dind
       image: docker:dind
-      command:
-        - /sh
       tty: true
       securityContext:
         privileged: true
