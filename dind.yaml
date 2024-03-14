@@ -7,8 +7,10 @@ spec:
     - name: dind
       image: docker:dind
       command:
-        - sh
+        - /sh
       tty: true
+      securityContext:
+        privileged: true
       volumeMounts:
         - name: docker-cache
           mountPath: /var/lib/docker
