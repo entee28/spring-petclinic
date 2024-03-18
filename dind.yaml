@@ -12,9 +12,9 @@ spec:
       volumeMounts:
         - name: docker-cache
           mountPath: /var/lib/docker
-          subPath: docker-cache
+          subPath: java-cache
   restartPolicy: Never
   volumes:
     - name: docker-cache
       persistentVolumeClaim:
-        claimName: dind-azurefile-pvc
+        claimName: azuredisk
